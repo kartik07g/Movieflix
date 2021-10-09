@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, session
+from flask import Flask, jsonify, request, session, redirect
 from main import db
 import uuid
 from passlib.hash import pbkdf2_sha256
@@ -7,6 +7,7 @@ class User:
     
 
     def start_session(Self, user):
+        del user['password']
         session['logged_in'] = True
         session['user'] = user
         return jsonify(user), 200
@@ -36,3 +37,7 @@ class User:
     
 
         return jsonify({"error": "SignUp Failed"}), 400
+
+    def signout(self):
+        session.clear()
+        return redirect('/')

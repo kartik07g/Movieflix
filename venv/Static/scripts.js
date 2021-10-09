@@ -10,7 +10,7 @@ $("form[name=signup_form]").submit(function(e){
         data: data,
         datatype: "json",
         success: function(resp){
-            window.location.href = "index/";
+            window.location.href = "/dashboard/";
         },
         error: function(resp){
             console.log(resp);
